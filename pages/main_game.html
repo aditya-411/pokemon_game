@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Pokémon Gameplay</title>
+        <script src="../scripts/battle.js"></script>
+        <style>
+            body{
+                background-image: url("../images/battle_bg.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+
+            }
+
+            .master-container {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                height: 98vh;
+                font-family: Arial, sans-serif;
+                color: white;
+                margin:0;
+            }
+
+            
+            
+            .pokemon-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60vh;
+                font-family: Arial, sans-serif;
+                color: white;
+            }
+            
+            .pokemon {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0 20px;
+            }
+        
+            .pokemon-image {
+                width: 200px;
+                height: 200px;
+                background-color: #f2f2f2;
+                border-radius: 50%;
+                margin-bottom: 10px;
+            }
+        
+            .health-bar {
+                width: 200px;
+                height: 20px;
+                background-color: #f2f2f2;
+                margin-bottom: 10px;
+            }
+
+            .health-bar::-webkit-progress-bar {
+                background-color: #f2f2f2;
+                border-radius: 5px;
+            }
+
+            .health-bar::-webkit-progress-value {
+                background-color: #4CAF50;
+                border-radius: 5px;
+            }
+
+            .health-bar::-moz-progress-bar {
+                background-color: #4CAF50;
+                border-radius: 5px;
+            }
+
+            .health-bar::-ms-fill {
+                background-color: #4CAF50;
+                border-radius: 5px;
+            }
+        
+            .attack-options {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+        
+            .attack-button {
+                padding: 10px 20px;
+                margin: 0 5px;
+                background-color: #f2f2f2;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            
+            .battle-log {
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 5px;
+                font-family: Arial, sans-serif;
+                color: #333;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="master-container">
+            <div class="pokemon-container">
+                <div class="pokemon">
+                    <img class="pokemon-image" id="img_1"></img>
+                    <progress class="health-bar" id="health-1" value="500" max="500"></progress>
+                    <div class="attack-options">
+                        <button class="attack-button" id="attack-button_1_1">Attack 1</button>
+                        <button class="attack-button" id="attack-button_1_2">Attack 2</button>
+                        <button class="attack-button" id="attack-button_1_3">Attack 3</button>
+                    </div>
+                </div>
+                <div class="pokemon">
+                    <img class="pokemon-image" id="img_2"></img>
+                    <progress class="health-bar" id="health-2"  value="500" max="500"></progress>
+                    <div class="attack-options">
+                        <button class="attack-button" id="attack-button_2_1">Attack 1</button>
+                        <button class="attack-button" id="attack-button_2_2">Attack 2</button>
+                        <button class="attack-button" id="attack-button_2_3">Attack 3</button>
+                    </div>
+                </div>
+            </div>
+            <div class="battle-log">
+                <p id="move-comment"></p>
+            </div>
+        </div>
+        
+    
+    </body>
+</html>
