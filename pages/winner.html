@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokemon Battle - Winner</title>
+    <style>
+        body{
+                background-image: url("../images/battle_bg.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                width:auto;
+                height: 100%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+        
+        h1 {
+            color: #333;
+            margin-top: 50px;
+            font-size: 3rem;
+        }
+        
+        p {
+            color: #666;
+            font-size: 4rem;
+        }
+        
+        .winner-info {
+            margin-top: 30px;
+            font-size: 5rem;
+        }
+        
+        .play-again-btn {
+            margin-top: 50px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .play-again-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pokemon Battle - Winner</h1>
+    
+    <div class="winner-info">
+        <p>The winner is: <strong id="winner-name">Pikachu</strong></p>
+        <p>Won by: <strong id="winner-hp">50 HP</strong></p>
+    </div>
+    
+    <button class="play-again-btn" onclick="location.href='../index.html'">Play Again</button>
+    <script src="../scripts/winner.js"></script>
+</body>
+</html>

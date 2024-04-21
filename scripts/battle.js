@@ -136,13 +136,13 @@ async function main(){
         healthBar2.value = player2Health;
 
         if (player1Health <= 0) {
-            alert(`Player 2 wins with ${user2}!`);
             sessionStorage.clear();
-            window.location.href = "../index.html";
+            sessionStorage.setItem("winner", JSON.stringify({"name":user2, "hp":player2Health}));
+            window.location.href = "../pages/winner.html";
         } else if (player2Health <= 0) {
-            alert(`Player 1 wins with ${user1}!`);
             sessionStorage.clear();
-            window.location.href = "../index.html";
+            sessionStorage.setItem("winner", JSON.stringify({"name":user1, "hp":player1Health}));
+            window.location.href = "../pages/winner.html";
         }
     }
 
