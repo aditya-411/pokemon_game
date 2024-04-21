@@ -2,6 +2,38 @@
 
 // Example code: Display a message in the console
 console.log("Home page loaded");
+sessionStorage.clear();
+
+
+var poke_options = [];
+for (var i = 1; i < 5; i++) {
+    poke_options.push(Math.floor(Math.random() * (1025 - 1 + 1)) + 1);
+}
+
+var poke_options_names = [];
+for (var i = 0; i < 4; i++) {
+    var apiUrl = `https://pokeapi.co/api/v2/pokemon/${poke_options[i]}`;
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            poke_options_names.push(data.name);
+            sessionStorage.setItem(data.name, JSON.stringify({"img":data.sprites.front_default, "hp":data.stats[0].base_stat}));
+            if (poke_options_names.length == 4) {
+                var select1 = document.getElementById("player1-select");
+                var select2 = document.getElementById("player2-select");
+                for (var i = 0; i < 4; i++) {
+                    var option1 = document.createElement("option");
+                    var option2 = document.createElement("option");
+                    option1.text = poke_options_names[i];
+                    option2.text = poke_options_names[i];
+                    select1.add(option1);
+                    select2.add(option2);
+                }
+            }
+        });
+}
+
+
 
 
 // Example code: Add an event listener to a button

@@ -1,10 +1,13 @@
 window.onload = function poke_check() {
+    const loading = document.getElementById('loading');
+    loading.style.display = "flex";
+    const master = document.getElementsByClassName('master-container');
+    master[0].style.display = "none";
     setTimeout(function() {
         console.log("Battle page loaded");
         const user1 = sessionStorage.getItem("player1Selection")
         const user2 = sessionStorage.getItem("player2Selection")
-        const valid_poke = ["Bulbasaur", "Charmander", "Squirtle", "Pikachu"]
-        if (!(valid_poke.includes(user1)) || !(valid_poke.includes(user2))) {
+        if (user1 === null || user2 === null) {
             console.log("Invalid Pokemon")
             alert("Please choose a pokemon for both players.");
             window.location.href = `../index.html`;
@@ -56,9 +59,6 @@ async function main(){
     var moves1 = await choose_three_random(data1.moves);
     var moves2 = await choose_three_random(data2.moves);
 
-    console.log(moves1);
-    console.log(moves2);
-
 
 
 
@@ -68,8 +68,8 @@ async function main(){
     const comment = document.getElementById("move-comment");
     const chance = document.getElementById("chance");
 
-    img1.src = `../images/${user1.toLowerCase()}.png`;
-    img2.src = `../images/${user2.toLowerCase()}.png`;
+    img1.src = JSON.parse(sessionStorage.getItem(user1)).img;
+    img2.src = JSON.parse(sessionStorage.getItem(user2)).img;
 
     chance.textContent = `It's ${user1}'s turn!`;
 
@@ -84,8 +84,22 @@ async function main(){
         attackButton.textContent = moves2[i].name;
     }
 
-    let player1Health = 500;
-    let player2Health = 500;
+
+    const health1 = document.getElementById("HP1");
+    const health2 = document.getElementById("HP2");
+    const healthBar1 = document.getElementById("health-1");
+    const healthBar2 = document.getElementById("health-2");
+    let player1Health = JSON.parse(sessionStorage.getItem(user1)).hp * 8;
+    let player2Health = JSON.parse(sessionStorage.getItem(user2)).hp * 8;
+    healthBar1.max = player1Health;
+    healthBar2.max = player2Health;
+    healthBar1.value = player1Health;
+    healthBar2.value = player2Health;
+    console.log(healthBar1.max, healthBar1.value, player1Health, healthBar1);
+    health1.textContent = `HP: ${player1Health}`;
+    health2.textContent = `HP: ${player2Health}`;
+
+    
 
     function attackPlayer(attacker, defender, taker, move) {
         const accuracy = move.accuracy;
@@ -108,16 +122,12 @@ async function main(){
             comment.textContent = `${attacker}'s attack missed.`;
         }
         chance.textContent = `It's ${defender}'s turn!`;
-
-        console.log(player1Health, player2Health);
     }
 
     function updateHealth() {
-        const healthBar1 = document.getElementById("health-1");
-        const healthBar2 = document.getElementById("health-2");
+        
 
-        const health1 = document.getElementById("HP1");
-        const health2 = document.getElementById("HP2");
+        
 
         health1.textContent = `HP: ${player1Health}`;
         health2.textContent = `HP: ${player2Health}`;
@@ -171,6 +181,11 @@ async function main(){
             handleAttackClick(user2, user1, 1, moves2[i]);
         });
     }
+    console.log("Battle page ready");
+    const loading = document.getElementById('loading');
+    loading.style.display = "none";
+    const master = document.getElementsByClassName('master-container');
+    master[0].style.display = "flex";
     
 }
 

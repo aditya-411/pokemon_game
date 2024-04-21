@@ -8,7 +8,8 @@
                 background-image: url("../images/battle_bg.png");
                 background-size: cover;
                 background-repeat: no-repeat;
-
+                width:auto;
+                height: 100%;
             }
 
             .master-container {
@@ -16,7 +17,7 @@
                 justify-content: center;
                 flex-direction: column;
                 align-items: center;
-                height: 98vh;
+                height: 100%;
                 font-family: Arial, sans-serif;
                 color: white;
                 margin:0;
@@ -117,16 +118,46 @@
                 font-size: 1rem;
             }
 
+
+
+            #loading {
+            position: fixed;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            margin:0;
+            top: 0;
+            left: 0;
+            text-align: center;
+            opacity: 0.6;
+            background-color: #fff;
+            z-index: 99;
+
+            
+            }
+        
+            #loading-image {
+                margin: 0;
+                z-index: 100;
+                width: auto;
+                height: 50%;
+            }
+
         </style>
     </head>
     <body>
+        <div id="loading">
+            <img id="loading-image" src="../images/loading.gif" class="loadimg" alt="Loading..." />
+        </div>
         <div class="master-container">
             <div class="pokemon-container">
                 <div class="pokemon">
                     <img class="pokemon-image" id="img_1"></img>
-                    <progress class="health-bar" id="health-1" value="500" max="500"></progress>
+                    <progress class="health-bar" id="health-1" value="100"></progress>
                     <div class="HP">
-                        <p id="HP1">HP: 500</p>
+                        <p id="HP1"></p>
                     </div>
                     <div class="attack-options">
                         <button class="attack-button" id="attack-button_1_1">Attack 1</button>
@@ -136,9 +167,9 @@
                 </div>
                 <div class="pokemon">
                     <img class="pokemon-image" id="img_2"></img>
-                    <progress class="health-bar" id="health-2"  value="500" max="500"></progress>
+                    <progress class="health-bar" id="health-2" value="100"></progress>
                     <div class="HP">
-                        <p id="HP2">HP: 500</p>
+                        <p id="HP2"></p>
                     </div>
                     <div class="attack-options">
                         <button class="attack-button" id="attack-button_2_1">Attack 1</button>
