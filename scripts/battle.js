@@ -186,6 +186,11 @@ async function main(){
     loading.style.display = "none";
     const master = document.getElementsByClassName('master-container');
     master[0].style.display = "flex";
+
+    const audio = document.getElementById("audio");
+    audio.addEventListener("canplaythrough", function() {
+        audio.play();
+    });
     
 }
 

@@ -7,3 +7,7 @@ const winnerHpElement = document.getElementById('winner-hp');
 
 winnerNameElement.textContent = winnerPokemon.name;
 winnerHpElement.textContent = `${winnerPokemon.hp} HP`;
+const audio = document.getElementById("audio");
+    audio.addEventListener("canplaythrough", function() {
+        audio.play();
+    });
