@@ -66,11 +66,12 @@ async function main(){
     const img1 = document.getElementById("img_1");
     const img2 = document.getElementById("img_2");
     const comment = document.getElementById("move-comment");
+    const chance = document.getElementById("chance");
 
     img1.src = `../images/${user1.toLowerCase()}.png`;
     img2.src = `../images/${user2.toLowerCase()}.png`;
 
-    comment.textContent = `It's ${user1}'s turn!`;
+    chance.textContent = `It's ${user1}'s turn!`;
 
     // Set HTML elements with ids attack-button_x_y
     for (let i = 0; i < moves1.length; i++) {
@@ -106,13 +107,20 @@ async function main(){
             console.log(`${attacker}'s attack missed.`);
             comment.textContent = `${attacker}'s attack missed.`;
         }
+        chance.textContent = `It's ${defender}'s turn!`;
 
         console.log(player1Health, player2Health);
     }
 
-    function updateHealthBars() {
+    function updateHealth() {
         const healthBar1 = document.getElementById("health-1");
         const healthBar2 = document.getElementById("health-2");
+
+        const health1 = document.getElementById("HP1");
+        const health2 = document.getElementById("HP2");
+
+        health1.textContent = `HP: ${player1Health}`;
+        health2.textContent = `HP: ${player2Health}`;
 
         healthBar1.value = player1Health;
         healthBar2.value = player2Health;
@@ -138,7 +146,7 @@ async function main(){
     function handleAttackClick(attacker, defender, taker, move) {
         if (currentPlayer !== taker) {
             attackPlayer(attacker, defender, taker, move);
-            updateHealthBars();
+            updateHealth();
             switchTurn();
         } else {
             if (taker === 1) {

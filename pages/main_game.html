@@ -53,6 +53,7 @@
                 height: 20px;
                 background-color: #f2f2f2;
                 margin-bottom: 10px;
+                border-radius: 5px;
             }
 
             .health-bar::-webkit-progress-bar {
@@ -97,6 +98,23 @@
                 color: #333;
                 padding-left: 1rem;
                 padding-right: 1rem;
+                margin: 0.3rem;
+            }
+
+            .HP {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: Arial, sans-serif;
+                color: white;
+                background-color: #4CAF50;
+                border-radius: 5px;
+                width: 50%;
+            }
+
+            .HP p {
+                margin: 0.5rem;
+                font-size: 1rem;
             }
 
         </style>
@@ -107,6 +125,9 @@
                 <div class="pokemon">
                     <img class="pokemon-image" id="img_1"></img>
                     <progress class="health-bar" id="health-1" value="500" max="500"></progress>
+                    <div class="HP">
+                        <p id="HP1">HP: 500</p>
+                    </div>
                     <div class="attack-options">
                         <button class="attack-button" id="attack-button_1_1">Attack 1</button>
                         <button class="attack-button" id="attack-button_1_2">Attack 2</button>
@@ -116,6 +137,9 @@
                 <div class="pokemon">
                     <img class="pokemon-image" id="img_2"></img>
                     <progress class="health-bar" id="health-2"  value="500" max="500"></progress>
+                    <div class="HP">
+                        <p id="HP2">HP: 500</p>
+                    </div>
                     <div class="attack-options">
                         <button class="attack-button" id="attack-button_2_1">Attack 1</button>
                         <button class="attack-button" id="attack-button_2_2">Attack 2</button>
@@ -124,7 +148,10 @@
                 </div>
             </div>
             <div class="battle-log">
-                <p id="move-comment"></p>
+                <p id="move-comment">No one has moved yet</p>
+            </div>
+            <div class="battle-log">
+                <p id="chance">You will see who's turn here</p>
             </div>
         </div>
         
