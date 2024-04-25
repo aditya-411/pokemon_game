@@ -33,6 +33,7 @@ Promise.all(fetchPromises)
             select2.add(option2);
         }
         set_options();
+        window.addEventListener('resize', checkScreenSize);
     });
 
 
@@ -100,4 +101,28 @@ player2Pokemon.addEventListener("change", function() {
         }
     });
 });
+
+function checkScreenSize() {
+    if (window.innerWidth < 800) {
+        const gameContainer = document.getElementById('player-select');
+        gameContainer.style.display = 'none';
+        const start = document.getElementById('start');
+        start.style.display = 'none';
+
+        const message = document.getElementById('small-screen')
+        message.style.display = 'flex';
+
+    } else {
+        const gameContainer = document.getElementById('player-select');
+        gameContainer.style.display = 'flex';
+        const start = document.getElementById('start');
+        start.style.display = 'flex';
+
+        const message = document.getElementById('small-screen')
+        message.style.display = 'none';
+    }
+}
+
+
+
 
