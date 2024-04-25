@@ -21,7 +21,7 @@ async function main(){
 
 
     async function get_attacks(apiUrl) {
-        x = await fetch(apiUrl);
+        let x = await fetch(apiUrl);
         data = await x.json();
         return data;
     }
@@ -190,6 +190,65 @@ async function main(){
     const audio = document.getElementById("audio");
     audio.addEventListener("canplaythrough", function() {
         audio.play();
+    });
+
+    const screenSize = window.innerWidth;
+
+    function checkScreenSize() {
+        if (window.innerWidth < 800) {
+            const gameContainer = document.getElementsByClassName('master-container');
+            gameContainer[0].style.display = 'none';
+
+            const message = document.getElementById('small-screen')
+            message.style.display = 'flex';
+
+        } else {
+            const gameContainer = document.getElementsByClassName('master-container');
+            gameContainer[0].style.display = 'flex';
+
+            const message = document.getElementById('small-screen')
+            message.style.display = 'none';
+        }
+    }
+
+    window.addEventListener('resize', checkScreenSize);
+    checkScreenSize();
+
+    const attackButtons1 = document.querySelectorAll('[id^="attack-button_1_"]');
+    const attackButtons2 = document.querySelectorAll('[id^="attack-button_2_"]');
+
+    function showTooltip(event, move) {
+        const tooltip = document.createElement('div');
+        tooltip.id = 'tooltip';
+        tooltip.textContent = `Damage: ${move.damage}, Accuracy: ${move.accuracy}%`;
+        tooltip.classList.add('battle-log');
+        const gameContainer = document.getElementsByClassName('master-container');
+        gameContainer[0].appendChild(tooltip);
+    }
+
+    function hideTooltip() {
+        const tooltip = document.getElementById('tooltip');
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+
+    attackButtons1.forEach((button, index) => {
+        button.addEventListener('mouseover', (event) => {
+            showTooltip(event, moves1[index]);
+        });
+        button.addEventListener('mouseout', () => {
+            hideTooltip();
+        });
+    });
+
+    attackButtons2.forEach((button, index) => {
+        button.addEventListener('mouseover', (event) => {
+            showTooltip(event, moves2[index]);
+        });
+        button.addEventListener('mouseout', () => {
+            hideTooltip();
+        });
     });
     
 }

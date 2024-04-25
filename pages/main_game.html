@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pokémon Gameplay</title>
         <script src="../scripts/battle.js"></script>
         <style>
@@ -93,7 +94,7 @@
                 border: none;
                 border-radius: 5px;
                 cursor: pointer;
-                font-size: 1.5rem;
+                font-size: 1rem;
             }
             
             .battle-log {
@@ -104,7 +105,7 @@
                 padding-left: 1rem;
                 padding-right: 1rem;
                 margin: 0.3rem;
-                font-size: 1.3rem;
+                font-size: 1rem;
             }
 
             .HP {
@@ -149,6 +150,16 @@
                 width: auto;
                 height: 50%;
             }
+            #small-screen{
+                display: none;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                color: rgb(255, 0, 0);
+                text-align: center;
+                padding: 10px;
+                font-size: 1.5rem;
+            }
 
         </style>
     </head>
@@ -191,6 +202,7 @@
                 <p id="chance">You will see who's turn here</p>
             </div>
         </div>
+        <p id="small-screen">This game is meant to be played only on PC screens wider than 800px</p>
         
     
     </body>
