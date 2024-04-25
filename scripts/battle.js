@@ -4,11 +4,9 @@ window.onload = function poke_check() {
     const master = document.getElementsByClassName('master-container');
     master[0].style.display = "none";
     setTimeout(function() {
-        console.log("Battle page loaded");
         const user1 = sessionStorage.getItem("player1Selection")
         const user2 = sessionStorage.getItem("player2Selection")
         if (user1 === null || user2 === null) {
-            console.log("Invalid Pokemon")
             alert("Please choose a pokemon for both players.");
             window.location.href = `../index.html`;
         }
@@ -30,7 +28,6 @@ async function main(){
     const data1 = await get_attacks(apiUrl);
     apiUrl = `https://pokeapi.co/api/v2/pokemon/${user2.toLowerCase()}`;
     const data2 = await get_attacks(apiUrl);
-    // Move the console.log(data1) outside the promise
 
 
     async function fetchAttackDamage(apiUrl) {
@@ -96,7 +93,6 @@ async function main(){
 
     chance.textContent = `It's ${user1}'s turn!`;
 
-    // Set HTML elements with ids attack-button_x_y
     for (let i = 0; i < moves1.length; i++) {
         const attackButton = document.getElementById(`attack-button_1_${i+1}`);
         attackButton.textContent = moves1[i].name;
@@ -127,20 +123,16 @@ async function main(){
         const accuracy = move.accuracy;
         const damage = move.damage;
 
-        // Check if the attack hits based on accuracy
         const hit = Math.random() < accuracy/100;
 
         if (hit) {
-            // Reduce defender's health by the damage
             if (taker === 1){ 
                 player1Health-= damage;
             } else {
                 player2Health-= damage;
             }
-            console.log(`${attacker} attacked ${defender} with ${move.name} and dealt ${damage} damage.`);
             comment.textContent = `${attacker} attacked ${defender} with ${move.name} and dealt ${damage} damage.`;
         } else {
-            console.log(`${attacker}'s attack missed.`);
             comment.textContent = `${attacker}'s attack missed.`;
         }
         chance.textContent = `It's ${defender}'s turn!`;
@@ -189,7 +181,6 @@ async function main(){
         }
     }
 
-    // Add event listeners to attack buttons
     for (let i = 0; i < moves1.length; i++) {
         const attackButton = document.getElementById(`attack-button_1_${i + 1}`);
         attackButton.addEventListener("click", function () {
@@ -203,7 +194,6 @@ async function main(){
             handleAttackClick(user2, user1, 1, moves2[i]);
         });
     }
-    console.log("Battle page ready");
     const loading = document.getElementById('loading');
     loading.style.display = "none";
     const master = document.getElementsByClassName('master-container');

@@ -1,7 +1,3 @@
-// Define your JavaScript code here
-
-// Example code: Display a message in the console
-console.log("Home page loaded");
 sessionStorage.clear();
 
 
@@ -42,14 +38,12 @@ Promise.all(fetchPromises)
 
 
 function set_options(){
-    // Example code: Add an event listener to a button
     const button = document.querySelector("#start-button");
     button.addEventListener("click", function() {
         const player1Selection = player1Pokemon.value;
         const player2Selection = player2Pokemon.value;
         
         if (player1Selection!=="none" && player2Selection!=="none") {
-            // Redirect to the main game page with the selected pokemon info
             sessionStorage.setItem("player1Selection", player1Pokemon.value);
             sessionStorage.setItem("player2Selection", player2Pokemon.value);
             window.location.href = `../pages/main_game.html`;
@@ -68,7 +62,6 @@ function set_options(){
 
 
 
-// Example code: Manipulate the DOM
 
 
 const background = document.querySelector("body");
