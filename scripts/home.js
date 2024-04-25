@@ -11,46 +11,61 @@ for (var i = 1; i < 5; i++) {
 }
 
 var poke_options_names = [];
+var fetchPromises = [];
+
 for (var i = 0; i < 4; i++) {
     var apiUrl = `https://pokeapi.co/api/v2/pokemon/${poke_options[i]}`;
-    fetch(apiUrl)
+    var fetchPromise = fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             poke_options_names.push(data.name);
-            sessionStorage.setItem(data.name, JSON.stringify({"img":data.sprites.front_default, "hp":data.stats[0].base_stat}));
-            if (poke_options_names.length == 4) {
-                var select1 = document.getElementById("player1-select");
-                var select2 = document.getElementById("player2-select");
-                for (var i = 0; i < 4; i++) {
-                    var option1 = document.createElement("option");
-                    var option2 = document.createElement("option");
-                    option1.text = poke_options_names[i];
-                    option2.text = poke_options_names[i];
-                    select1.add(option1);
-                    select2.add(option2);
-                }
-            }
+            sessionStorage.setItem(data.name, JSON.stringify({"img_back":data.sprites.other.showdown.back_default, "img_front":data.sprites.other.showdown.front_default, "hp":data.stats[0].base_stat}));
         });
+    fetchPromises.push(fetchPromise);
 }
 
+Promise.all(fetchPromises)
+    .then(() => {
+        var select1 = document.getElementById("player1-select");
+        var select2 = document.getElementById("player2-select");
+        for (var i = 0; i < 4; i++) {
+            var option1 = document.createElement("option");
+            var option2 = document.createElement("option");
+            option1.text = poke_options_names[i];
+            option2.text = poke_options_names[i];
+            select1.add(option1);
+            select2.add(option2);
+        }
+        set_options();
+    });
 
 
 
-// Example code: Add an event listener to a button
-const button = document.querySelector("#start-button");
-button.addEventListener("click", function() {
-    const player1Selection = player1Pokemon.value;
-    const player2Selection = player2Pokemon.value;
+function set_options(){
+    // Example code: Add an event listener to a button
+    const button = document.querySelector("#start-button");
+    button.addEventListener("click", function() {
+        const player1Selection = player1Pokemon.value;
+        const player2Selection = player2Pokemon.value;
+        
+        if (player1Selection!=="none" && player2Selection!=="none") {
+            // Redirect to the main game page with the selected pokemon info
+            sessionStorage.setItem("player1Selection", player1Pokemon.value);
+            sessionStorage.setItem("player2Selection", player2Pokemon.value);
+            window.location.href = `../pages/main_game.html`;
+        } else {
+            alert("Please choose a pokemon for both players.");
+        }
+    });
     
-    if (player1Selection!=="none" && player2Selection!=="none") {
-        // Redirect to the main game page with the selected pokemon info
-        sessionStorage.setItem("player1Selection", player1Pokemon.value);
-        sessionStorage.setItem("player2Selection", player2Pokemon.value);
-        window.location.href = `../pages/main_game.html`;
-    } else {
-        alert("Please choose a pokemon for both players.");
-    }
-});
+    const loading = document.getElementById('loading');
+    loading.style.display = "none";
+    const selections = document.getElementById('player-select');
+    selections.style.display = "flex";
+    const start = document.getElementById('start');
+    start.style.display = "flex";
+}
+
 
 
 // Example code: Manipulate the DOM
@@ -92,3 +107,4 @@ player2Pokemon.addEventListener("change", function() {
         }
     });
 });
+

@@ -30,7 +30,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 60vh;
+                height: auto;
                 width: 90vw;
                 font-family: Arial, sans-serif;
                 color: white;
@@ -42,7 +42,9 @@
                 align-items: center;
                 margin: 0 20px;
                 width: 40%;
-                padding: 5vw;
+                padding-top: 1rem;
+                padding-left: 5vw;
+                padding-right: 5vw;
             }
         
             .pokemon-image {
@@ -97,7 +99,7 @@
                 font-size: 1rem;
             }
             
-            .battle-log {
+            .text_box {
                 background-color: rgba(255, 255, 255, 0.8);
                 border-radius: 5px;
                 font-family: Arial, sans-serif;
@@ -169,9 +171,11 @@
             <img id="loading-image" src="../images/loading.gif" class="loadimg" alt="Loading..." />
         </div>
         <div class="master-container">
+            <canvas id="battle-canvas" width="800" height="480"></canvas>
+            
             <div class="pokemon-container">
                 <div class="pokemon">
-                    <img class="pokemon-image" id="img_1"></img>
+                    <p class="text_box" id="poke_name_1">Pokemon 1</p>
                     <progress class="health-bar" id="health-1" value="100"></progress>
                     <div class="HP">
                         <p id="HP1"></p>
@@ -183,7 +187,7 @@
                     </div>
                 </div>
                 <div class="pokemon">
-                    <img class="pokemon-image" id="img_2"></img>
+                    <p class="text_box" id="poke_name_2">Pokemon 2</p>
                     <progress class="health-bar" id="health-2" value="100"></progress>
                     <div class="HP">
                         <p id="HP2"></p>
@@ -195,10 +199,10 @@
                     </div>
                 </div>
             </div>
-            <div class="battle-log">
+            <div class="text_box">
                 <p id="move-comment">No one has moved yet</p>
             </div>
-            <div class="battle-log">
+            <div class="text_box">
                 <p id="chance">You will see who's turn here</p>
             </div>
         </div>

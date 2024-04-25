@@ -62,14 +62,37 @@ async function main(){
 
 
 
-
-    const img1 = document.getElementById("img_1");
-    const img2 = document.getElementById("img_2");
+    const arena = new Image()
     const comment = document.getElementById("move-comment");
     const chance = document.getElementById("chance");
 
-    img1.src = JSON.parse(sessionStorage.getItem(user1)).img;
-    img2.src = JSON.parse(sessionStorage.getItem(user2)).img;
+    
+    arena.src = "../images/arena.png";
+
+    const canvas = document.getElementById('battle-canvas');
+    const ctx = canvas.getContext('2d');
+    arena.onload = function(){
+        ctx.drawImage(arena, 0, 0);
+        const img1 = new Image()
+        const img2 = new Image()
+        img1.src = JSON.parse(sessionStorage.getItem(user1)).img_back;
+        img2.src = JSON.parse(sessionStorage.getItem(user2)).img_front;
+        img1.onload = function(){
+            ctx.drawImage(img1, 100, 350, 2*img1.width, 2*img1.height);
+        }
+        img2.onload = function(){
+            ctx.drawImage(img2, 550, 220, 2*img2.width, 2*img2.height);
+        }
+    }
+
+
+    const poke_name_1 = document.getElementById("poke_name_1");
+    const poke_name_2 = document.getElementById("poke_name_2");
+    poke_name_1.textContent = user1;
+    poke_name_2.textContent = user2;
+    
+
+
 
     chance.textContent = `It's ${user1}'s turn!`;
 
@@ -95,7 +118,6 @@ async function main(){
     healthBar2.max = player2Health;
     healthBar1.value = player1Health;
     healthBar2.value = player2Health;
-    console.log(healthBar1.max, healthBar1.value, player1Health, healthBar1);
     health1.textContent = `HP: ${player1Health}`;
     health2.textContent = `HP: ${player2Health}`;
 
@@ -221,7 +243,7 @@ async function main(){
         const tooltip = document.createElement('div');
         tooltip.id = 'tooltip';
         tooltip.textContent = `Damage: ${move.damage}, Accuracy: ${move.accuracy}%`;
-        tooltip.classList.add('battle-log');
+        tooltip.classList.add('text_box');
         const gameContainer = document.getElementsByClassName('master-container');
         gameContainer[0].appendChild(tooltip);
     }

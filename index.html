@@ -18,7 +18,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 98vh;
         }
         
         .player-select {
@@ -29,7 +29,7 @@
         
         
         .start-button {
-            display: flex;
+            display: none;
             justify-content: center;
         }
 
@@ -51,7 +51,9 @@
             background-color: #ffd700;
         }
 
-
+        .player-select{
+            display: none;
+        }
         .player-select select {
           background-color: #0563af;
           color: white;
@@ -90,8 +92,8 @@
     
     <div class="container">
             <img id="game_name">
-            
-            <div class="player-select">
+            <img src="images/loading.gif" height="80vh" id="loading">
+            <div class="player-select" id="player-select">
                 <select id="player1-select">
                     <option value="none" selected disabled hidden>Player 1</option> 
                 </select>
@@ -101,7 +103,7 @@
                 </select>
             </div>
             
-            <div class="start-button">
+            <div class="start-button" id="start">
                 <button id="start-button">Start Game</button>
             </div>
     </div>
